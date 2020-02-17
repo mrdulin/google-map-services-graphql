@@ -1,0 +1,33 @@
+{
+  "name": "nodejs-gmp",
+  "version": "1.0.0",
+  "description": "Learning Google Maps Platform by examples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrdulin/nodejs-gmp.git"
+  },
+  "keywords": [],
+  "author": "mrdulin <novaline.dulin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrdulin/nodejs-gmp/issues"
+  },
+  "homepage": "https://github.com/mrdulin/nodejs-gmp#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/parser": "^2.19.2",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@googlemaps/google-maps-services-js": "^2.0.2"
+  }
+}
