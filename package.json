@@ -1,33 +1,43 @@
 {
-  "name": "nodejs-gmp",
+  "name": "google-map-services-graphql",
   "version": "1.0.0",
-  "description": "Learning Google Maps Platform by examples",
-  "main": "index.js",
+  "description": "Google Maps GraphQL services",
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mrdulin/nodejs-gmp.git"
+    "url": "git+https://github.com/mrdulin/google-map-services-graphql.git"
   },
   "keywords": [],
   "author": "mrdulin <novaline.dulin@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mrdulin/nodejs-gmp/issues"
+    "url": "https://github.com/mrdulin/google-map-services-graphql/issues"
   },
-  "homepage": "https://github.com/mrdulin/nodejs-gmp#readme",
+  "homepage": "https://github.com/mrdulin/google-map-services-graphql#readme",
   "devDependencies": {
+    "@types/jest": "^25.1.3",
     "@typescript-eslint/eslint-plugin": "^2.19.2",
     "@typescript-eslint/parser": "^2.19.2",
+    "apollo-server-testing": "^2.10.1",
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
+    "jest": "^25.1.0",
     "prettier": "^1.19.1",
+    "ts-jest": "^25.2.1",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
   },
   "dependencies": {
-    "@googlemaps/google-maps-services-js": "^2.0.2"
+    "@googlemaps/google-maps-services-js": "^2.0.2",
+    "apollo-server": "^2.10.1",
+    "apollo-server-cache-redis": "^1.1.5",
+    "apollo-server-express": "^2.10.1",
+    "apollo-server-plugin-response-cache": "^0.3.11",
+    "express": "^4.17.1",
+    "graphql": "^14.6.0"
   }
 }
