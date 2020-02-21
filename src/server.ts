@@ -15,6 +15,9 @@ async function createServer() {
     schema,
     context,
     plugins: [responseCachePlugin()],
+    cacheControl: {
+      defaultMaxAge: 30,
+    },
     cache: new RedisCache({
       port: 6379,
       host: '127.0.0.1',

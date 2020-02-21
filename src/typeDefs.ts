@@ -72,13 +72,23 @@ const typeDefs = gql`
     compound_code: String
   }
   type LatLngLiteral {
-    lat: Int
-    lng: Int
+    lat: Float
+    lng: Float
+  }
+  input LatLngLiteralInput {
+    lat: Float
+    lng: Float
   }
   type LatLngBounds {
     northeast: LatLngLiteral
-    southwest: LatLngBounds
+    southwest: LatLngLiteral
   }
+
+  input LatLngBoundsInput {
+    northeast: LatLngLiteralInput
+    southwest: LatLngLiteralInput
+  }
+
   enum LocationType {
     ROOFTOP
     RANGE_INTERPOLATED
@@ -154,8 +164,66 @@ const typeDefs = gql`
     fields: [String]
     locationbias: String
   }
+
+  input PlaceQueryAutocompleteRequestParams {
+    input: String!
+    offset: Int
+    location: String
+    radius: Int
+    language: String
+  }
+  type PlaceQueryAutocompleteResponseData {
+    predictions: [Place]
+  }
+  input GeocodeComponents {
+    postal_code: String
+    country: String
+    route: String
+    locality: String
+    administrative_area: String
+  }
+  input GeocodeRequestParams {
+    address: String
+    bounds: LatLngBoundsInput
+    language: String
+    region: String
+    components: GeocodeComponents
+  }
+  type GeocodeResult {
+    types: [AddressType]
+    formatted_address: String
+    address_components: [AddressComponent]
+    postcode_localities: [String]
+    geometry: AddressGeometry
+    plus_code: PlusCode
+    partial_match: Boolean
+    place_id: String
+  }
+  type GeocodeResponseData {
+    results: [GeocodeResult]
+  }
+  type ReverseGeocodeResponseData {
+    results: [GeocodeResult]
+  }
+  enum ReverseGeocodingLocationType {
+    ROOFTOP
+    RANGE_INTERPOLATED
+    GEOMETRIC_CENTER
+    APPROXIMATE
+  }
+
+  input ReverseGeocodeRequestParams {
+    latlng: LatLngLiteralInput
+    place_id: String
+    language: String
+    result_type: [AddressType]
+    location_type: [ReverseGeocodingLocationType]
+  }
   type Query {
     findPlaceFromText(params: FindPlaceFromTextRequestParams): FindPlaceFromTextResponseData
+    placeQueryAutocomplete(params: PlaceQueryAutocompleteRequestParams): PlaceQueryAutocompleteResponseData
+    geocode(params: GeocodeRequestParams): GeocodeResponseData
+    reverseGeocode(params: ReverseGeocodeRequestParams): ReverseGeocodeResponseData
   }
 `;
 
