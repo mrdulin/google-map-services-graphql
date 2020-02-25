@@ -19,10 +19,10 @@ async function createServer() {
       defaultMaxAge: 30,
     },
     cache: new RedisCache({
-      port: 6379,
-      host: '127.0.0.1',
+      port: Number.parseInt(process.env.REDIS_PORT || '6379', 10),
+      host: process.env.REDIS_HOST || '127.0.0.1',
       family: 4,
-      db: 0,
+      db: process.env.REDIS_DB || 0,
     }),
   });
 
