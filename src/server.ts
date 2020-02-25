@@ -5,8 +5,9 @@ import { RedisCache } from 'apollo-server-cache-redis';
 import { typeDefs } from './typeDefs';
 import { resolvers } from './resolvers';
 import { context } from './context';
+import http from 'http';
 
-async function createServer() {
+async function createServer(): Promise<http.Server> {
   const port = process.env.PORT || 3001;
   const app = express();
   const graphqlPath = '/graphql';

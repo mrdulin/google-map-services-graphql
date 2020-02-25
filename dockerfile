@@ -33,7 +33,7 @@ RUN yarn install --production --ignore-scripts --prefer-offline \
 COPY --from=ci /app/dist /app/dist
 
 # If deployed to GKE, health check is enabled and override by deployment.yaml by default from ingress. Dockerfile HEALTHCHECK is duplicated with k8s HEALTHCHECK
-# HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl --fail http://localhost:${PORT}/api/v1/ping || exit 1
+# HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl --fail http://localhost:${PORT}/.well-known/apollo/server-health || exit 1
 
 EXPOSE ${PORT}
 CMD yarn start
