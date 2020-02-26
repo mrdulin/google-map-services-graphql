@@ -1,8 +1,5 @@
 import './env';
 import { PubSub, Message } from '@google-cloud/pubsub';
-// import { Client } from '@googlemaps/google-maps-services-js';
-
-// const client = new Client({});
 
 async function messageHandler(message: Message): Promise<void> {
   console.log(`Received message ${message.id}:`);

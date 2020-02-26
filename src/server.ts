@@ -1,17 +1,16 @@
-import { ApolloServer, makeExecutableSchema } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import responseCachePlugin from 'apollo-server-plugin-response-cache';
-import { RedisCache } from 'apollo-server-cache-redis';
-import { typeDefs } from './typeDefs';
-import { resolvers } from './resolvers';
 import { context } from './context';
 import http from 'http';
+import { cache } from './cache';
+import { schema } from './schema';
 
 async function createServer(): Promise<http.Server> {
   const port = process.env.PORT || 3001;
   const app = express();
   const graphqlPath = '/graphql';
-  const schema = makeExecutableSchema({ typeDefs, resolvers });
+
   const server = new ApolloServer({
     schema,
     context,
@@ -19,12 +18,7 @@ async function createServer(): Promise<http.Server> {
     cacheControl: {
       defaultMaxAge: 30,
     },
-    cache: new RedisCache({
-      port: Number.parseInt(process.env.REDIS_PORT || '6379', 10),
-      host: process.env.REDIS_HOST || '127.0.0.1',
-      family: 4,
-      db: process.env.REDIS_DB || 0,
-    }),
+    cache,
   });
 
   server.applyMiddleware({ app, path: graphqlPath });
